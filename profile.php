@@ -9,13 +9,13 @@ loginCheck();
 $pdo = db_conn();
 
 //３．SQL作成、実行、格納
-// $stmt = $pdo->prepare('SELECT * FROM tabifrie_user WHERE email = :email AND password = :password');
+$stmt = $pdo->prepare('SELECT * FROM tabifrie_user WHERE email = :email AND password = :password');
 // $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-// $status = $stmt->execute();
-// if($status === false) {
-//     sql_error($stmt);
-// }
-// $val = $stmt->fetch();
+$status = $stmt->execute();
+if($status === false) {
+    sql_error($stmt);
+}
+$val = $stmt->fetch();
 
 //４．データ登録処理後
 // if($status === false){
@@ -35,7 +35,7 @@ $pdo = db_conn();
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/preference.css" />
-    <title>旅フレ‐旅行の好み</title>
+    <title>旅フレ‐プロフィール</title>
 </head>
 
 <body>
@@ -55,11 +55,20 @@ $pdo = db_conn();
         <button class="btn" onclick="document.location='logout.php'">ログアウト</button>
     </header>
     <section class="container">
+        <h2>プロフィール</h2>
         <div>
-            <img src="./img/banner.png" alt="トップページバナー" width="640px" class=""> 
+            <h3>基本情報</h3>
+            <div class="info info-1">
+                <p>ニックネーム<?= $_SESSION['user_name'] ?></p>
+                <p>年齢<?= $_SESSION['user_name'] ?></p>
+                <p>性別<?= $_SESSION['user_name'] ?></p>
+            </div>
+            <div class="info info-2">
+                <p>メールアドレス<?= $_SESSION['user_name'] ?></p>
+                <p>パスワード<?= $_SESSION['user_name'] ?></p>
+            </div>
         </div>
         <div>
-            <!-- <h2>旅行の好み</h2> -->
             <h3>旅行の好み</h3>
             <form action="preference_act.php" method="post">
                 <div><p>1. 一泊の予算は？</p>
@@ -99,11 +108,12 @@ $pdo = db_conn();
                 </select>
                 </div><br><br>
                 <button class="btn_s">保存</button>
-                
             </form>
             <button class="btn" onclick="document.location='profile.php'">破棄</button>
         </div>
-        
+        <div>
+            <h3>旅プラン</h3>
+        </div>
     </section>
 </body>
 

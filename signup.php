@@ -13,7 +13,6 @@
     <header class="container">
         <h1> 
             <img src="./img/logo2.png" alt="旅ふれロゴ" width="232px" class=""> 
-        <!--imgのwidthとheightは画像サイズを確認して比例で調整する-->
         </h1>
         <nav class="nav">
             <ul>
@@ -52,9 +51,6 @@
             <img src="./img/banner.png" alt="トップページバナー" width="640px" class=""> 
         </div>
     </section>
-    <!-- <footer>
-        <small>(c) tabifriend.com</small>
-    </footer> -->
 </body>
 
 </html>

@@ -1,4 +1,6 @@
-.info {
+.info, .prefer, .plan {
   display: flex;
+  gap: 24px;
 }
+
 

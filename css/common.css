@@ -1,6 +1,7 @@
 body {
+  box-sizing: border-box;
   margin: 0;
-  color: #555;
+  color: #666;
 }
 .container {
   max-width: 1200px;
@@ -11,7 +12,7 @@ body {
 }
 /*header*/
 header {
-  position: sticky; /*要確認*/
+  /* position: sticky; */
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -42,14 +43,13 @@ nav > ul {
 }
 
 li > a {
-  /* background: #A8DADC; */
   display: block; 
   /*領域を広げてクリックしやすくしたい、a 要素はデフォルトでインラインボックスなので、幅と高さが指摘できない。そこで display プロパティを使って、ブロックかインラインブロックにすればよい*/
   width: 100px;
   line-height: 64px; /* 上下中央、行ボックスの高さをロゴ画像の高さに合わせることで、テキストを上下中央揃えになって、バランスがきれい。*/
   text-align: center; /* 左右中央 */
   text-decoration: none;
-  color: #444;
+  color: #666;
 }
 
 li > a:hover {
@@ -61,7 +61,7 @@ li > a:hover {
 }
 .btn {
   background-color: #eee;
-  color: #444;
+  color: #666;
   border-color: #b3b3b3;
   border-radius: 10px;
   min-width: 100px;
@@ -72,6 +72,7 @@ li > a:hover {
   /* a 要素はインラインボックスなので、上下に padding をつけても上と少し被っていたり、背景色からはみだしたりして、padding の分だけ要素の高さを出したいなら、この要素の display プロパティをブロックかインラインブロックにする必要がある。ボタンが増えたら次のボタンは右側にきてほしいのでinline-block*/
 }
 .btn:hover {
+  color: #777;
   font-weight: 600;
   transform: scale(1.05);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -109,7 +110,9 @@ h3 {
 }
 p {
   /* margin: 0; */
+  font-size: 14px;
 }
+
 
 /*footer*/
 /* footer {

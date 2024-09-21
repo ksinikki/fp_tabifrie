@@ -35,6 +35,6 @@ if($status === false){
   exit('ErrorMessage:'.$error[2]);
 }else{
   //５．リダイレクト
-  header('Location: profile_create.php');
+  header('Location: preference.php');
 
 }

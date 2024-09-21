@@ -30,7 +30,7 @@ if($val['id']) { // if($val['id'] !== '') {
     $_SESSION['user_name'] = $val['name'];
     $_SESSION['user_id'] = $val['email'];
     // $_SESSION['user_id'] = $val['id'];
-    header('Location: preference.php');
+    header('Location: profile.php');
 } else {
     //Login失敗時(Logout経由)
     header('Location: login.php');

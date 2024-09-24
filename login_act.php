@@ -20,8 +20,6 @@ if($status === false) {
 
 // 一致する場合、データを抽出し$valに格納
 $val = $stmt->fetch();
-// var_dump($val);
-// exit;
 
 
 if($val['id']) { // if($val['id'] !== '') { 
@@ -29,7 +27,6 @@ if($val['id']) { // if($val['id'] !== '') {
     $_SESSION['chk_ssid'] = session_id(); //chk_ssid 変数名
     $_SESSION['user_name'] = $val['name'];
     $_SESSION['user_id'] = $val['email'];
-    // $_SESSION['user_id'] = $val['id'];
     header('Location: profile.php');
 } else {
     //Login失敗時(Logout経由)

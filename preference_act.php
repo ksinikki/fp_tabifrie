@@ -36,5 +36,5 @@ if($status === false){
   exit('Error Message:'.$error[2]);
 }else{
   //５．リダイレクト
-  header('Location: profile.php'); // これから作成
+  header('Location: plan.php'); // これから作成
 }

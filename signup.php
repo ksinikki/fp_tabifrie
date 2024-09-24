@@ -18,7 +18,7 @@
             <ul>
                 <li><a href="login.php">プロフィール</a></li>
                 <li><a href="login.php">旅検索</a></li>
-                <li><a href="login.php">通知</a></li>
+                <li><a href="login.php">マッチング通知</a></li>
                 <li><a href="login.php">メッセージ</a></li>
             </ul>
         </nav>

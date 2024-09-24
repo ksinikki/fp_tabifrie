@@ -1,8 +1,10 @@
 <?php
+// 【問題❶】選択されたエリアによって、国の選択肢が表示できていない※下記の方法でkeyが英語表示になる
 session_start();
 require_once 'funcs.php';
 loginCheck();
 db_conn();
+// $pdo = db_conn();
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +27,7 @@ db_conn();
             <ul>
                 <li><a href="profile.php">プロフィール</a></li>
                 <li><a href="plansearch.php">旅検索</a></li>
-                <li><a href="notification.php">通知</a></li>
+                <li><a href="notification.php">マッチング通知</a></li>
                 <li><a href="message.php">メッセージ</a></li>
             </ul>
         </nav>
@@ -39,55 +41,173 @@ db_conn();
         <div>
             <!-- <h2>旅行の好み</h2> -->
             <h3>旅プラン</h3>
-            <form action="plan_act.php" method="post">
-                <div>
+            <form action="plan_act02.php" method="post">
+            <div>
                     <p>目的地</p>
-                    <p>　エリア　
+                    <p>　地域　
                         <select id="area" name="area">
-                            <option value="">-エリアを選択してください-</option>
+                            <option value="">-地域を選択してください-</option>
+                            <option value="Asia">アジア</option>
+                            <option value="North America">北米</option>
                         </select></p>
                         <p>　国　　　
                         <select id="country" name="country">
                             <option value="">-国を選択してください-</option>
+                            <option value="S.Korea">韓国</option>
+                            <option value="Taiwan">台湾</option>
+                            <option value="Thailand">タイ</option>
+                            <option value="Vietnam">ベトナム</option>
+                            <option value="Malaysia">マレーシア</option>
+                            <option value="Canada">カナダ</option>
+                            <option value="USA">アメリカ</option>
                         </select></p>
-                </div><br>
+                </div><br>  
                 <div>
                     <p>時間</p>
-                    <p>　
-                        <input type="date" name="start">　から<br><br>　
-                        <input type="date" name="end">　まで</p>
+                    <div class="start">
+                        <p>　<select name="start-year">
+                                <option value=""></option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                        </select>　年　</p>
+                        <p>　<select name="start-month">
+                                <option value=""></option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                        </select>　月　</p>
+                        <p>　<select name="start-date">
+                                <option value=""></option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                        </select>　日　から</p></p>
+                    </div>
+                    <div class="end">
+                        <p>　<select name="end-year">
+                                <option value=""></option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                        </select>　年　</p>
+                        <p>　<select name="end-month">
+                                <option value=""></option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                        </select>　月　</p>
+                        <p>　<select name="end-date">
+                                <option value=""></option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                        </select>　日　まで</p></p>
+                    </div>
+                    
                 </div><br><br>
                 <button class="btn_s">保存</button>
-                <button class="btn" onclick="document.location='profile.php'">破棄</button>
+                <button class="btn" onclick="document.location='planresearch.php'">破棄</button>
             </form>
         </div>
         
     </section>
-
     <script language="javascript" type="text/javascript">  
-    var dList = {
-        Asia : ['韓国', '台湾', 'タイ', 'マレーシア', 'ベトナム', 'インドネシア'],
-        NorthAmerica :  ['アメリカ', 'カナダ'],
-    };
+    // var dList = {
+    //     Asia : ['韓国', '台湾', 'タイ', 'マレーシア', 'ベトナム', 'インドネシア'],
+    //     NorthAmerica :  ['アメリカ', 'カナダ'],
+    // };
 
     area = document.getElementById("area");
     country = document.getElementById("country");
     
-    for (key in dList) {
-        // area.innerHTML = area.innerHTML + '<option name="area" value="key">'+ key +'</option>';
-        area.innerHTML = area.innerHTML + '<option>'+ key +'</option>';
-    }
+    // for (key in dList) {
+    //     // area.innerHTML = area.innerHTML + '<option value="key">'+ key +'</option>';
+    //     area.innerHTML = area.innerHTML + '<option>'+ key +'</option>';
+    // }
 
-    area.addEventListener('change', function ref_country(e){
-        country.innerHTML = '<option>-国を選択してください-</option>';
-        itm = e.target.value;
-        if(itm in dList){
-                for (i = 0; i < dList[itm].length; i++) {
-                    // country.innerHTML = country.innerHTML + '<option name="country" value="dList[itm][i]">'+ dList[itm][i] +'</option>';
-                    country.innerHTML = country.innerHTML + '<option>'+ dList[itm][i] +'</option>';
-                }
-        }
-    });
+    // area.addEventListener('change', function ref_country(e){
+    //     country.innerHTML = '<option>-国を選択してください-</option>';
+    //     itm = e.target.value;
+    //     if(itm in dList){
+    //             for (i = 0; i < dList[itm].length; i++) {
+    //                 // country.innerHTML = country.innerHTML + '<option value="dList[itm][i]">'+ dList[itm][i] +'</option>';
+    //                 country.innerHTML = country.innerHTML + '<option>'+ dList[itm][i] +'</option>';
+    //             }
+    //     }
+    // });
     </script>
 </body>
 

@@ -14,6 +14,11 @@
 
 【問題❹】データ取得（ログインユーザでない）
 
+※画面遷移図
+
+https://app.moqups.com/LeCy9OwxQlSuTlL1z4rnRc10CKlUHuAc/edit/page/a3730393e
+
+
 
 【アプリ企画】
 

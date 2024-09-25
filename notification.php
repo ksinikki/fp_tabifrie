@@ -7,25 +7,48 @@ session_start();
 require_once 'funcs.php';
 loginCheck();
 
-// ユーザデータ取得【要確認】
-$myArea = $_GET['myArea']; 
-$myCountry = $_GET['myCountry'];
-$myStart = $_GET['myStart'];
-$myEnd = $_GET['myEnd'];
+// ユーザデータ取得ー条件１【要確認】
+$marea = $_GET['my_area']; 
+$mcountry = $_GET['my_country'];
+$mstart = $_GET['my_start'];
+$mend = $_GET['my_end'];
 
-// DBから一致したデータ取得【要確認】
+// ユーザデータ取得ー条件２【要確認】
+$mhotel = $_GET['my_hotel'];
+$mfligh = $_GET['my_flight'];
+$mengaging = $_GET['my_hotel'];
+$msmoking = $_GET['my_hotel'];
+$mdrinking = $_GET['my_hotel'];
+$meating = $_GET['my_hotel'];
+
+
+// DBから一致したデータ取得ー条件１【要確認】
 $pdo = db_conn();
-$stmt = $pdo->prepare('SELECT * FROM tabifrie_plan WHERE area = :myArea AND country = :myCountry AND start <= :myStart AND end >= :myEnd;');
-$stmt->bindValue(':myarea', $myArea, PDO::PARAM_STR);
-$stmt->bindValue(':mycountry', $myCountry, PDO::PARAM_STR);
-$stmt->bindValue(':mystart', $myStart, PDO::PARAM_STR);
-$stmt->bindValue(':myend', $myEnd, PDO::PARAM_STR);
+$stmt = $pdo->prepare('SELECT * FROM tabifrie_plan WHERE area = :my_area AND country = :my_country AND start <= :my_start AND end >= :my_end;');
+$stmt->bindValue(':my_area', $marea, PDO::PARAM_STR);
+$stmt->bindValue(':my_country', $mcountry, PDO::PARAM_STR);
+$stmt->bindValue(':my_start', $mstart, PDO::PARAM_STR);
+$stmt->bindValue(':my_end', $mend, PDO::PARAM_STR);
 $status = $stmt->execute();
 if($status === false) {
     sql_error($stmt);
 }
 $val = $stmt->fetch();
 
+//マッチング度計算、ー条件２【要確認】  0をiに
+$fhotel = $val[0]['hotel'];
+$fflight = $val[0]['flight'];
+$fengaging = $val[0]['engaging'];
+$fsmoking = $val[0]['smoking'];
+$fdrinking = $val[0]['drinking'];
+$feating = $val[0]['eating'];
+
+$fpref = [$fhotel, $fflight,  $fengaging, $fsmoking, $fdrinking, $feating,];
+$mpref = [$mhotel, $mflight,  $mengaging, $msmoking, $mdrinking, $meating,];
+
+matching($result){ 
+   if ($fpref == $mpref){ $result = 1}  else $result = 0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +87,7 @@ $val = $stmt->fetch();
                     <thead>
                         <tr>
                             <th class="">旅ふれ</th>
+                            <th class="">マッチング度</th>
                             <th class="">プロフィール</th>
                             <th class="">エリア</th>
                             <th class="">国</th>
@@ -74,8 +98,9 @@ $val = $stmt->fetch();
                     </thead>
                     <tbody> 
                         <tr> 
-                            <!-- 【課題：抽出されたデータrowごとに表示】 -->
+                            <!-- 抽出されたデータrowごとに表示【要確認】 $result >=5のみ 0をiに?-->
                             <td class=""><?= $val[0]['name'] ?></td>
+                            <td class=""><?= $result ?></td>
                             <td class="">><button class="btn_s" onclick="document.location='profile_tabifrie.php'">詳細</button></td>
                             <td class=""><?= $val[0]['area'] ?></td>
                             <td class=""><?= $val[0]['country'] ?></td>

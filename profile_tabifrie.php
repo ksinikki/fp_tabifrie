@@ -90,9 +90,7 @@ $val = $stmt->fetch();
                     <p>A. <?= $val['eating'] ?></p>
                 </div><br>
             </div><br>
-            <!-- <div>
-                <h3>旅プラン</h3>
-            </div><br><br> -->
+
             <div>
                 <!-- <button class="btn_s" onclick="document.location='offer.php'">旅ふれオファー</button> -->
                 <button class="btn" onclick="document.location='message.php'">メッセージ</button>

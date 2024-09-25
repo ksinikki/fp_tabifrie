@@ -55,3 +55,4 @@ function loginCheck()
         $_SESSION['chk_ssid'] = session_id();
     }
 }
+

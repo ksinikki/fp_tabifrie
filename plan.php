@@ -26,7 +26,7 @@ db_conn();
         <nav class="nav">
             <ul>
                 <li><a href="profile.php">プロフィール</a></li>
-                <li><a href="plansearch.php">旅検索</a></li>
+                <li><a href="offer.php">オファー</a></li>
                 <li><a href="notification.php">マッチング通知</a></li>
                 <li><a href="message.php">メッセージ</a></li>
             </ul>

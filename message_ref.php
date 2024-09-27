@@ -47,7 +47,7 @@ if (!$status) {
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/plan.css" />
-    <title>旅フレ‐マッチング結果</title>
+    <title>旅フレ‐メッセージ</title>
 </head>
 
 <body>
@@ -58,7 +58,7 @@ if (!$status) {
         <nav class="nav">
             <ul>
                 <li><a href="profile.php">プロフィール</a></li>
-                <li><a href="plansearch.php">旅検索</a></li>
+                <li><a href="login.php">マッチング通知</a></li>
                 <li><a href="notification.php">マッチング通知</a></li>
                 <li><a href="message.php">メッセージ</a></li>
             </ul>

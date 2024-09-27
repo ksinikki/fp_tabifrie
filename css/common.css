@@ -45,11 +45,12 @@ nav > ul {
 li > a {
   display: block; 
   /*領域を広げてクリックしやすくしたい、a 要素はデフォルトでインラインボックスなので、幅と高さが指摘できない。そこで display プロパティを使って、ブロックかインラインブロックにすればよい*/
-  width: 100px;
+  width: 120px;
   line-height: 64px; /* 上下中央、行ボックスの高さをロゴ画像の高さに合わせることで、テキストを上下中央揃えになって、バランスがきれい。*/
   text-align: center; /* 左右中央 */
   text-decoration: none;
   color: #666;
+  /* font-size: 14px; */
 }
 
 li > a:hover {

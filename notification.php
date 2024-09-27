@@ -1,54 +1,63 @@
 <?php
-// 【問題❸】マッチング度計算（未着手）
-// 条件１、時間、目的地一致の場合、
-// 条件２、旅の好み計算で5/6以上の人を表示
+// 条件１、時間、目的地一致の場合、plan
+// 条件２、旅の好み完全一致の人を表示 user
 
 session_start();
 require_once 'funcs.php';
 loginCheck();
 
 // ユーザデータ取得ー条件１【要確認】
-$marea = $_GET['my_area']; 
-$mcountry = $_GET['my_country'];
-$mstart = $_GET['my_start'];
-$mend = $_GET['my_end'];
+$marea = $_GET['area']; 
+$mcountry = $_GET['country'];
+$mstart = $_GET['start'];
+$mend = $_GET['end'];
 
 // ユーザデータ取得ー条件２【要確認】
-$mhotel = $_GET['my_hotel'];
-$mfligh = $_GET['my_flight'];
-$mengaging = $_GET['my_hotel'];
-$msmoking = $_GET['my_hotel'];
-$mdrinking = $_GET['my_hotel'];
-$meating = $_GET['my_hotel'];
+$mhotel = $_GET['hotel'];
+$mfligh = $_GET['flight'];
+$mengaging = $_GET['engaging'];
+$msmoking = $_GET['smoking'];
+$mdrinking = $_GET['drinking'];
+$meating = $_GET['eating'];
 
 
-// DBから一致したデータ取得ー条件１【要確認】
+// DBから一致したデータ取得ー条件１【要確認】plan
 $pdo = db_conn();
-$stmt = $pdo->prepare('SELECT * FROM tabifrie_plan WHERE area = :my_area AND country = :my_country AND start <= :my_start AND end >= :my_end;');
-$stmt->bindValue(':my_area', $marea, PDO::PARAM_STR);
-$stmt->bindValue(':my_country', $mcountry, PDO::PARAM_STR);
-$stmt->bindValue(':my_start', $mstart, PDO::PARAM_STR);
-$stmt->bindValue(':my_end', $mend, PDO::PARAM_STR);
+$stmt = $pdo->prepare('SELECT 
+    tabifrie_plan.name as name,
+    tabifrie_plan.email as email,
+    tabifrie_plan.start as start,
+    tabifrie_plan.end as end,
+
+    tabifrie_user.gender as gender,
+    tabifrie_user.age as age,
+    tabifrie_user.hotel as hotel,
+    tabifrie_user.flight as flight,
+    tabifrie_user.engaging as engaging,
+    tabifrie_user.smoking as smoking,
+    tabifrie_user.drinking as drinking,
+    tabifrie_user.eating as eating,
+    tabifrie_area.area as area,
+    tabifrie_country.country as country
+FROM tabifrie_plan
+INNER JOIN tabifrie_user
+ON tabifrie_plan.email = tabifrie_user.email
+
+INNER JOIN tabifrie_area
+ON tabifrie_plan.area = tabifrie_area.id
+
+INNER JOIN tabifrie_country
+ON tabifrie_plan.country = tabifrie_country.id WHERE tabifrie_plan.area = :area AND tabifrie_plan.country = :country AND tabifrie_plan.start = :start AND tabifrie_plan.end = :end ;'); // phpの日付比較
+$stmt->bindValue(':area', $marea, PDO::PARAM_STR);
+$stmt->bindValue(':country', $mcountry, PDO::PARAM_STR);
+$stmt->bindValue(':start', $mstart, PDO::PARAM_STR);
+$stmt->bindValue(':end', $mend, PDO::PARAM_STR);
 $status = $stmt->execute();
 if($status === false) {
     sql_error($stmt);
 }
 $val = $stmt->fetch();
 
-//マッチング度計算、ー条件２【要確認】  0をiに
-$fhotel = $val[0]['hotel'];
-$fflight = $val[0]['flight'];
-$fengaging = $val[0]['engaging'];
-$fsmoking = $val[0]['smoking'];
-$fdrinking = $val[0]['drinking'];
-$feating = $val[0]['eating'];
-
-$fpref = [$fhotel, $fflight,  $fengaging, $fsmoking, $fdrinking, $feating,];
-$mpref = [$mhotel, $mflight,  $mengaging, $msmoking, $mdrinking, $meating,];
-
-matching($result){ 
-   if ($fpref == $mpref){ $result = 1}  else $result = 0;
-}
 ?>
 
 <!DOCTYPE html>
@@ -97,16 +106,45 @@ matching($result){
                         </tr>
                     </thead>
                     <tbody> 
-                        <tr> 
-                            <!-- 抽出されたデータrowごとに表示【要確認】 $result >=5のみ 0をiに?-->
-                            <td class=""><?= $val[0]['name'] ?></td>
-                            <td class=""><?= $result ?></td>
-                            <td class="">><button class="btn_s" onclick="document.location='profile_tabifrie.php'">詳細</button></td>
-                            <td class=""><?= $val[0]['area'] ?></td>
-                            <td class=""><?= $val[0]['country'] ?></td>
-                            <td class=""><?= $val[0]['start'] ?></td>
-                            <td class=""><?= $val[0]['end'] ?></td>
-                        </tr>
+                   <?= $view = array();
+
+foreach( $val as $plan) {
+    $count = 0;
+    
+    if($plan['hotel'] == $mhotel){ // 修正済
+        $count++;
+    }
+    if($plan['flight'] == $mflight){ // 修正済
+        $count++;
+    }
+    if($plan['engaging'] == $mengaging){ // 修正済
+        $count++;
+    }
+    if($plan['smoking'] == $msmoking){ // 修正済
+        $count++;
+    }
+    if($plan['drinking'] == $mdrinking){ // 修正済
+        $count++;
+    }
+    /* 中略 */
+    if($plan['eating'] == $meating){
+        $count++;
+    }
+    //もしカウントが5以上なら
+    if($count >= 5) {
+        //表示する配列に追加?>
+        <tr>  
+            <td class=""><?= $plan['name'] ?></td>
+            <td class="">><button class="btn_s" onclick="document.location='profile_tabifrie.php?user_id=<?= $plan['email'] ?>'">詳細</button></td>
+            <td class=""><?= $plan['area'] ?></td>
+            <td class=""><?= $plan['country'] ?></td>
+            <td class=""><?= $plan['start'] ?></td>
+            <td class=""><?= $plan['end'] ?></td>
+        </tr>
+        <?=
+        $view[] = $plan;
+    } 
+} ?>
                     </tbody>
                 </table>
             </div>           

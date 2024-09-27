@@ -41,25 +41,26 @@ db_conn();
         <div>
             <!-- <h2>旅行の好み</h2> -->
             <h3>旅プラン</h3>
-            <form action="plan_act02.php" method="post">
+            <form action="plan_act.php" method="post">
             <div>
                     <p>目的地</p>
                     <p>　地域　
                         <select id="area" name="area">
                             <option value="">-地域を選択してください-</option>
-                            <option value="Asia">アジア</option>
-                            <option value="North America">北米</option>
+                            <option value="1">北米</option>
+                            <option value="2">アジア</option>
+                            
                         </select></p>
                         <p>　国　　　
                         <select id="country" name="country">
                             <option value="">-国を選択してください-</option>
-                            <option value="S.Korea">韓国</option>
-                            <option value="Taiwan">台湾</option>
-                            <option value="Thailand">タイ</option>
-                            <option value="Vietnam">ベトナム</option>
-                            <option value="Malaysia">マレーシア</option>
-                            <option value="Canada">カナダ</option>
-                            <option value="USA">アメリカ</option>
+                            <option value="1">カナダ</option>
+                            <option value="2">アメリカ</option>
+                            <option value="3">韓国</option>
+                            <option value="4">台湾</option>
+                            <option value="5">タイ</option>
+                            <option value="7">ベトナム</option>
+                            <option value="6">マレーシア</option>
                         </select></p>
                 </div><br>  
                 <div>
@@ -179,23 +180,23 @@ db_conn();
                     
                 </div><br><br>
                 <button class="btn_s">保存</button>
-                <button class="btn" onclick="document.location='planresearch.php'">破棄</button>
+                <button class="btn" onclick="document.location='***.php'">破棄</button>
             </form>
         </div>
         
     </section>
     <script language="javascript" type="text/javascript">  
     // var dList = {
-    //     Asia : ['韓国', '台湾', 'タイ', 'マレーシア', 'ベトナム', 'インドネシア'],
-    //     NorthAmerica :  ['アメリカ', 'カナダ'],
+    //     1 : {1:'カナダ', 2:'アメリカ'},
+    //     2 : {3:'韓国',  4:'台湾', 5:'タイ', 6:'マレーシア', 7:'ベトナム'},
+       
     // };
 
-    area = document.getElementById("area");
-    country = document.getElementById("country");
+    // area = document.getElementById("area");
+    // country = document.getElementById("country");
     
     // for (key in dList) {
-    //     // area.innerHTML = area.innerHTML + '<option value="key">'+ key +'</option>';
-    //     area.innerHTML = area.innerHTML + '<option>'+ key +'</option>';
+    //     area.innerHTML = area.innerHTML + '<option value="' + key + '">' + key +'</option>';
     // }
 
     // area.addEventListener('change', function ref_country(e){
@@ -203,8 +204,8 @@ db_conn();
     //     itm = e.target.value;
     //     if(itm in dList){
     //             for (i = 0; i < dList[itm].length; i++) {
-    //                 // country.innerHTML = country.innerHTML + '<option value="dList[itm][i]">'+ dList[itm][i] +'</option>';
-    //                 country.innerHTML = country.innerHTML + '<option>'+ dList[itm][i] +'</option>';
+    //                 // country.innerHTML = country.innerHTML + '<option value="'+ dList[itm][i] +'">'+ dList[itm][i] +'</option>';
+    //                 country.innerHTML = country.innerHTML + '<option value="'+ dList[itm][i] +'">' + '</option>';
     //             }
     //     }
     // });

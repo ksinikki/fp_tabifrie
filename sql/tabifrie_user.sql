@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2024 at 10:47 AM
+-- Generation Time: Sep 27, 2024 at 06:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,16 +39,17 @@ CREATE TABLE `tabifrie_user` (
   `engaging` varchar(128) NOT NULL,
   `smoking` varchar(128) NOT NULL,
   `drinking` varchar(128) NOT NULL,
-  `eating` varchar(128) NOT NULL,
-  `plan_id` int(128) NOT NULL
+  `eating` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tabifrie_user`
 --
 
-INSERT INTO `tabifrie_user` (`id`, `name`, `gender`, `age`, `email`, `password`, `hotel`, `flight`, `engaging`, `smoking`, `drinking`, `eating`, `plan_id`) VALUES
-(1, 'kimika', '女', '40代', 'kimika@email.com', 'kimika', '1万円から2万5千円まで', '普通', 'フライトとホテルのみ', '禁煙', '飲む', 'なんでも食べれる', 0);
+INSERT INTO `tabifrie_user` (`id`, `name`, `gender`, `age`, `email`, `password`, `hotel`, `flight`, `engaging`, `smoking`, `drinking`, `eating`) VALUES
+(1, 'kimika', '女', '40代', 'kimika@email.com', 'kimika', '2', '2', '1', '1', '3', '3'),
+(2, 'emily', '女', '30代', 'emily@email.com', 'emily', '2', '2', '1', '1', '1', '3'),
+(3, 'amber', '女', '30代', 'amber@email.com', 'amber', '2', '2', '1', '1', '3', '3');
 
 --
 -- Indexes for dumped tables
@@ -68,7 +69,7 @@ ALTER TABLE `tabifrie_user`
 -- AUTO_INCREMENT for table `tabifrie_user`
 --
 ALTER TABLE `tabifrie_user`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

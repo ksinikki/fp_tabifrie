@@ -24,32 +24,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tabifrie_message`
+-- Table structure for table `tabifrie_country`
 --
 
-CREATE TABLE `tabifrie_message` (
+CREATE TABLE `tabifrie_country` (
   `id` int(12) NOT NULL,
-  `name` varchar(12) NOT NULL,
-  `email` varchar(128) NOT NULL,
-  `content` varchar(255) NOT NULL,
-  `date_submit` datetime NOT NULL
+  `country` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tabifrie_message`
+-- Dumping data for table `tabifrie_country`
 --
 
-INSERT INTO `tabifrie_message` (`id`, `name`, `email`, `content`, `date_submit`) VALUES
-(1, 'kimika', 'kimika@email.com', 'こんにちは。', '2024-09-27 20:35:21');
+INSERT INTO `tabifrie_country` (`id`, `country`) VALUES
+(1, 'カナダ'),
+(2, 'アメリカ'),
+(3, '韓国'),
+(4, '台湾'),
+(5, 'タイ'),
+(6, 'マレーシア'),
+(7, 'ベトナム'),
+(8, 'イギリス'),
+(9, 'フランス'),
+(10, 'イタリア'),
+(11, 'スペイン'),
+(12, 'ドイツ');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tabifrie_message`
+-- Indexes for table `tabifrie_country`
 --
-ALTER TABLE `tabifrie_message`
+ALTER TABLE `tabifrie_country`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -57,10 +65,10 @@ ALTER TABLE `tabifrie_message`
 --
 
 --
--- AUTO_INCREMENT for table `tabifrie_message`
+-- AUTO_INCREMENT for table `tabifrie_country`
 --
-ALTER TABLE `tabifrie_message`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `tabifrie_country`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

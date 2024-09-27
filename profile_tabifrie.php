@@ -1,12 +1,11 @@
 <?php
-// 【問題❹】データ取得（ログインユーザでない）
 // profile.phpよりコピー、修正要
 session_start();
 require_once 'funcs.php';
 loginCheck();
 
 //1. データ取得
-$email = $_SESSION['user_id'];
+$email = $_GET['user_id'];
 
 //2. DB接続します 
 $pdo = db_conn();
@@ -30,7 +29,7 @@ $val = $stmt->fetch();
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/profile.css" />
-    <title>旅ふれ‐旅ふれんど・プロフィール</title>
+    <title>旅ふれ‐旅ふれんど・旅ふれのプロフィール</title>
 </head>
 
 <body>
@@ -93,7 +92,7 @@ $val = $stmt->fetch();
 
             <div>
                 <!-- <button class="btn_s" onclick="document.location='offer.php'">旅ふれオファー</button> -->
-                <button class="btn" onclick="document.location='message.php'">メッセージ</button>
+                <button class="btn_s" onclick="document.location='message.php'">メッセージ</button>
             </div>
         </form>
     </section>

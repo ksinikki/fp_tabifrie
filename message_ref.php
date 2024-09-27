@@ -3,26 +3,40 @@ session_start();
 require_once 'funcs.php';
 loginCheck();
 
-$name = $val['name'];
-$email = $val['email'];
-$context = $_POST['context'];
+// $name = $_SESSION['user_name'];
+// $email = $_SESSION['user_id'];
+// $content = $_GET['content'];
 
 $pdo = db_conn();
-
-$stmt = $pdo->prepare('INSERT INTO tabifrie_message(id, name, email, context, date_submit) VALUES(NULL, :name, :email, :context,  NOW())');
-$stmt->bindValue(':name', $name, PDO::PARAM_STR);
-$stmt->bindValue(':email', $email, PDO::PARAM_STR);
-$stmt->bindValue(':context', $context, PDO::PARAM_STR);
+// 【問題：同時に二人のデータ取得、表示ができていない】
+$stmt = $pdo->prepare('SELECT
+tabifrie_message as content,
+tabifrie_user.name as name
+tabifrie_user.email as email
+FROM
+    tabifrie_message, tabifrie_user
+JOIN tabifrie_massage
+ON tabifrie_user.email = tabifrie_message.email');
 
 $status = $stmt->execute();
 
-// SQL実行時にエラーがある場合STOP
-if($status === false) {
+
+if (!$status) {
     sql_error($stmt);
+} else {
+        while ($messages = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $view = '
+            <div class="message msg_right">
+                <div class="message_box">
+                    <div class="message_content">
+                    <div class="message_text">'
+                            + $message + '
+                        </div>
+                    </div>
+                </div>
+            </div>'
+        }
 }
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -53,26 +67,58 @@ if($status === false) {
         <button class="btn" onclick="document.location='logout.php'">ログアウト</button>
     </header>
     <section class="container">
-        <div class="conversation">
-        <!-- 【問題】今までの会話をすべて抽出して、（時間順で？）表示 -->
+        <div class="tabifrie_name">
+            <!-- <p><?= $val['name'] ?>さん</p> -->
         </div>
-        <div class="message">
-            <form action="message_act" method="post">
+<!-- 【問題：旅ふれの名前GET？】 -->
+<!-- 【問題：message表示スタート】 -->
+        <div class="messages"><?= $view ?></div>
+
+        
+<!-- 【問題：message表示エンド】 -->
+<!-- 【要修正】 -->
+        <!-- <div class="messages">
+            
+            <div class="message msg_left">
+                <div class="message_box">
+                    <div class="message_content">
+                        <div class="message_text">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+
+           
+            <div class="message msg_right">
+                <div class="message_box">
+                    <div class="message_content">
+                    <div class="message_text">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clear"></div>
+        </div>  -->
+<!-- 【要修正エンド】 -->
+        <div>
+            <form action="message_act.php" method="post">
                 <div>
-                <textarea name="context"></textarea>
+                  <textarea name=content class="send_message"></textarea> 
                 </div>
                 <button class="btn_s">送信</button>
             </form>
         </div>
         <div class="offer_choice">
-            <button class="btn_s" onclick="">旅ふれとしてオファー</button>
-            <button class="btn" onclick="">旅ふれとして保留</button>
+            <form action="offer.php" method="post">
+                <button class="btn_s" onclick="" type="submit" name="invitation" value="1">旅ふれとしてオファー</button>
+                <button class="btn" onclick="" type="submit" name="invitation" value="0">旅ふれとして保留</button>
+            </form>
         </div>
     </section>
-    <script>
-        // オファーイベント
-        // 保留イベント
-    </script>
 </body>
 
 </html>

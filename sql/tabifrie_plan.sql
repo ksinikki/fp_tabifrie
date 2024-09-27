@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2024 at 10:47 AM
+-- Generation Time: Sep 27, 2024 at 06:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,9 +42,9 @@ CREATE TABLE `tabifrie_plan` (
 --
 
 INSERT INTO `tabifrie_plan` (`id`, `name`, `email`, `start`, `end`, `area`, `country`) VALUES
-(1, '', '0', '0000-00-00', '0000-00-', '0', '0'),
-(2, '0', '0', '0000-00-00', '0000-00-', '', ''),
-(3, '0', '0', '0', '0', '', '');
+(1, 'kimika', 'kimika@email.com', '20241101', '20241130', '2', '3'),
+(2, 'emily', 'emily@email.com', '20241101', '20241130', '2', '3'),
+(3, 'amber', 'amber@email.com', '20241101', '20241130', '2', '3');
 
 --
 -- Indexes for dumped tables
@@ -64,7 +64,7 @@ ALTER TABLE `tabifrie_plan`
 -- AUTO_INCREMENT for table `tabifrie_plan`
 --
 ALTER TABLE `tabifrie_plan`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

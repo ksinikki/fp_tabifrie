@@ -4,6 +4,7 @@ require_once 'funcs.php';
 loginCheck();
 
 
+
 ?>
 
 <!DOCTYPE html>

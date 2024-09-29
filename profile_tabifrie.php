@@ -50,7 +50,7 @@ $val = $stmt->fetch();
     </header>
     <section class="container profile">
         <h2>旅ふれんど‐プロフィール</h2>
-        <form action="signup_act.php" method="post">
+        <!-- <form action="message_act.php" method="post"> -->
             <div>
                 <h3>基本情報</h3>
                 <div class="info">
@@ -94,7 +94,7 @@ $val = $stmt->fetch();
                 <!-- <button class="btn_s" onclick="document.location='offer.php'">旅ふれオファー</button> -->
                 <button class="btn_s" onclick="document.location='message.php'">メッセージ</button>
             </div>
-        </form>
+        <!-- </form> -->
     </section>
 </body>
 

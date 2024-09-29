@@ -34,7 +34,7 @@ if($status === false){
   $error = $stmt->errorInfo();
   exit('ErrorMessage:'.$error[2]);
 }else{
-  //５．リダイレクト
+  
   header('Location: preference.php');
 
 }

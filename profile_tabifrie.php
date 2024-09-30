@@ -92,7 +92,7 @@ $val = $stmt->fetch();
 
             <div>
                 <!-- <button class="btn_s" onclick="document.location='offer.php'">旅ふれオファー</button> -->
-                <button class="btn_s" onclick="document.location='message.php'">メッセージ</button>
+                <button class="btn_s" onclick="document.location='message_detail.php?user_id=<?= $val['email']?>'">メッセージ</button>
             </div>
         <!-- </form> -->
     </section>
